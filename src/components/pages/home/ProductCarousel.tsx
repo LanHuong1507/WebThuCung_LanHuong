@@ -3,14 +3,22 @@ import Slider from "react-slick";
 import dogFoodImage from "../../../assets/images/dog.png";
 import catFoodImage from "../../../assets/images/cat.jpg";
 import fishFoodImage from "../../../assets/images/fish.jpg";
-import {
-  CheckCircleOutlined,
-  EnvironmentOutlined,
-  HeartOutlined,
-} from "@ant-design/icons";
+const CheckCircleOutlined = dynamic(
+  () => import("@ant-design/icons").then((icon) => icon.CheckCircleOutlined),
+  { ssr: false },
+);
+const EnvironmentOutlined = dynamic(
+  () => import("@ant-design/icons").then((icon) => icon.EnvironmentOutlined),
+  { ssr: false },
+);
+const HeartOutlined = dynamic(
+  () => import("@ant-design/icons").then((icon) => icon.HeartOutlined),
+  { ssr: false },
+);
 import Image from "next/image";
 import React from "react";
 import { Button } from "antd";
+import dynamic from "next/dynamic";
 
 const NextArrow = ({ onClick }: { onClick: () => void }) => (
   <button

@@ -1,14 +1,34 @@
-import {
-  FacebookFilled,
-  InstagramFilled,
-  LinkOutlined,
-  MailOutlined,
-  MessageFilled,
-  PhoneOutlined,
-  PinterestFilled,
-  TwitterCircleFilled,
-  YoutubeFilled,
-} from "@ant-design/icons";
+const PhoneOutlined = dynamic(() => import("@ant-design/icons/PhoneOutlined"), {
+  ssr: false,
+});
+const MailOutlined = dynamic(() => import("@ant-design/icons/MailOutlined"), {
+  ssr: false,
+});
+const LinkOutlined = dynamic(() => import("@ant-design/icons/LinkOutlined"), {
+  ssr: false,
+});
+const FacebookFilled = dynamic(
+  () => import("@ant-design/icons/FacebookFilled"),
+  { ssr: false },
+);
+const InstagramFilled = dynamic(
+  () => import("@ant-design/icons/InstagramFilled"),
+  { ssr: false },
+);
+const TwitterCircleFilled = dynamic(
+  () => import("@ant-design/icons/TwitterCircleFilled"),
+  { ssr: false },
+);
+const PinterestFilled = dynamic(
+  () => import("@ant-design/icons/PinterestFilled"),
+  { ssr: false },
+);
+const YoutubeFilled = dynamic(() => import("@ant-design/icons/YoutubeFilled"), {
+  ssr: false,
+});
+const MessageFilled = dynamic(() => import("@ant-design/icons/MessageFilled"), {
+  ssr: false,
+});
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -21,6 +41,7 @@ import Discover from "../../../assets/images/discover.png";
 import MasterCard from "../../../assets/images/mastercard.png";
 import Visa from "../../../assets/images/visa.jpg";
 import Logo from "../../../assets/images/logo.jpg";
+import dynamic from "next/dynamic";
 
 const Footer = () => {
   return (
@@ -103,7 +124,9 @@ const Footer = () => {
         <div className="my-6 border-t border-gray-600"></div>
         <div className="mb-10 grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-5">
           <div>
-            <h5 className="mb-4 text-start lg:text-center font-semibold">DOG FOOD</h5>
+            <h5 className="mb-4 text-start lg:text-center font-semibold">
+              DOG FOOD
+            </h5>
             <ul className="text-start lg:text-center">
               <li>
                 <Link href="#" className="hover:text-white">
@@ -134,7 +157,9 @@ const Footer = () => {
           </div>
 
           <div>
-            <h5 className="mb-4 text-start lg:text-center font-semibold">DOG SUPPLIES</h5>
+            <h5 className="mb-4 text-start lg:text-center font-semibold">
+              DOG SUPPLIES
+            </h5>
             <ul className="text-start lg:text-center">
               <li>
                 <Link href="#" className="hover:text-white">
@@ -165,7 +190,9 @@ const Footer = () => {
           </div>
 
           <div>
-            <h5 className="mb-4 text-start lg:text-center font-semibold">CAT FOOD</h5>
+            <h5 className="mb-4 text-start lg:text-center font-semibold">
+              CAT FOOD
+            </h5>
             <ul className="text-start lg:text-center">
               <li>
                 <Link href="#" className="hover:text-white">
@@ -196,7 +223,9 @@ const Footer = () => {
           </div>
 
           <div>
-            <h5 className="mb-4 text-start lg:text-center font-semibold">USEFUL LINKS</h5>
+            <h5 className="mb-4 text-start lg:text-center font-semibold">
+              USEFUL LINKS
+            </h5>
             <ul className="text-start lg:text-center">
               <li>
                 <Link href="#" className="hover:text-white">
@@ -227,7 +256,9 @@ const Footer = () => {
           </div>
 
           <div>
-            <h5 className="mb-4 text-start lg:text-center font-semibold">OUR COMPANY</h5>
+            <h5 className="mb-4 text-start lg:text-center font-semibold">
+              OUR COMPANY
+            </h5>
             <ul className="text-start lg:text-center">
               <li>
                 <Link href="#" className="hover:text-white">

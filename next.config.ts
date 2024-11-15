@@ -13,4 +13,7 @@ module.exports = withTM({
   experimental: {
     esmExternals: false,
   },
+  images: {
+    domains: ['via.placeholder.com'],
+  },
 });

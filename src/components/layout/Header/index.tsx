@@ -1,21 +1,38 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import {
-  UserOutlined,
-  ShoppingCartOutlined,
-  SearchOutlined,
-  MenuOutlined,
-  HomeOutlined,
-  BookOutlined,
-  PhoneOutlined,
-  LoginOutlined,
-} from "@ant-design/icons";
+const SearchOutlined = dynamic(
+  () => import("@ant-design/icons/SearchOutlined"),
+  { ssr: false },
+);
+const ShoppingCartOutlined = dynamic(
+  () => import("@ant-design/icons/ShoppingCartOutlined"),
+  { ssr: false },
+);
+const UserOutlined = dynamic(() => import("@ant-design/icons/UserOutlined"), {
+  ssr: false,
+});
+const MenuOutlined = dynamic(() => import("@ant-design/icons/MenuOutlined"), {
+  ssr: false,
+});
+const HomeOutlined = dynamic(() => import("@ant-design/icons/HomeOutlined"), {
+  ssr: false,
+});
+const BookOutlined = dynamic(() => import("@ant-design/icons/BookOutlined"), {
+  ssr: false,
+});
+const PhoneOutlined = dynamic(() => import("@ant-design/icons/PhoneOutlined"), {
+  ssr: false,
+});
+const LoginOutlined = dynamic(() => import("@ant-design/icons/LoginOutlined"), {
+  ssr: false,
+});
 import { Button, Dropdown, Input, Menu, Modal, Select } from "antd";
 
 import "@flaticon/flaticon-uicons/css/all/all.css";
 import Logo from "../../../assets/images/logo.jpg";
 import { routerNames } from "@/components/constants/router.constant";
+import dynamic from "next/dynamic";
 
 const { Option } = Select;
 

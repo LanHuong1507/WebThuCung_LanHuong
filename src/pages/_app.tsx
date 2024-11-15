@@ -5,7 +5,9 @@ import store from "../reudx/store"; // Import the store
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <Provider store={store}> {/* Wrap your component with Provider */}
+    <Provider store={store}>
+      {" "}
+      {/* Wrap your component with Provider */}
       <Component {...pageProps} />
     </Provider>
   );

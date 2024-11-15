@@ -1,6 +1,6 @@
-import Layout from '../../components/layout/Layout';
-import HomeComponent from '../../components/pages/home';
-import Head from 'next/head';
+import Layout from "../../components/layout/Layout";
+import HomeComponent from "../../components/pages/home";
+import Head from "next/head";
 
 const Home = () => {
   return (

@@ -1,8 +1,11 @@
-import type { NextConfig } from "next";
+const withTM = require("next-transpile-modules")([
+  "rc-util",
+  "rc-pagination",
+  "rc-picker",
+  "@ant-design/icons",
+  "@ant-design/icons-svg",
+]);
 
-const nextConfig: NextConfig = {
-  /* config options here */
-  reactStrictMode: true,
-};
-
-export default nextConfig;
+module.exports = withTM({
+  // Your other Next.js config options
+});

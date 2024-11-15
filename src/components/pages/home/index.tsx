@@ -9,18 +9,17 @@ import {
   HeartOutlined,
   SmileOutlined,
 } from "@ant-design/icons";
+import ProductList from "./ProductList";
 
 const Home = () => {
   return (
     <main>
-      <div className="py-4 flex items-center justify-center">
+      <div className="flex items-center justify-center">
         <ProductCarousel />
       </div>
 
       <div className="px-4 py-10">
-        <h2 className="text-xl font-semibold text-center mb-4">
-          Shop By Categories
-        </h2>
+        <h2 className="text-xl font-semibold text-center mb-4">SHOP BY PET</h2>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 justify-center">
           <Link
             href="#"
@@ -65,8 +64,11 @@ const Home = () => {
             <span className="mt-2 text-white text-xl">Other</span>
           </Link>
         </div>
-       
       </div>
+      <section>
+        <ProductList />
+      </section>
+
       <div className="flex flex-col md:flex-row items-center bg-gray-100 p-10">
         <div className="flex-1 space-y-4 text-start md:text-left">
           <h1 className="text-4xl font-bold text-gray-800">
@@ -89,17 +91,18 @@ const Home = () => {
           <Link href={routerNames.ABOUT} passHref>
             <Button
               type="primary"
-              className="mt-6 bg-red-600 hover:bg-red-700 text-white"
+              className="mt-6 p-6 bg-red-600 hover:bg-blue-600 text-white"
             >
-              About us
+              <span className="font-medium text-lg">About us</span>
+              <i className="fi fi-sr-arrow-right text-white text-lg pt-1"></i>
             </Button>
           </Link>
         </div>
-        <div className="flex-1 mt-10 md:mt-0">
+        <div className="flex-1 mt-4 lg:flex justify-end">
           <Image
             src={PeoDog}
             alt="Dog"
-            className="rounded-lg"
+            className="rounded-lg w-full object-cover"
             width={400}
             height={400}
           />

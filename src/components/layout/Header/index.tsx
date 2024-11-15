@@ -9,8 +9,9 @@ import {
   HomeOutlined,
   BookOutlined,
   PhoneOutlined,
+  LoginOutlined,
 } from "@ant-design/icons";
-import { Button, Dropdown, Menu, Select } from "antd";
+import { Button, Dropdown, Input, Menu, Modal, Select } from "antd";
 
 import "@flaticon/flaticon-uicons/css/all/all.css";
 import Logo from "../../../assets/images/logo.jpg";
@@ -24,6 +25,15 @@ const Header = () => {
   const [activeTab, setActiveTab] = useState("menu");
   const [showCategories, setShowCategories] = useState(false);
   const [cartItems, setCartItems] = useState(0);
+  const [isSearchOpen, setSearchOpen] = useState(false);
+
+  const handleSearchClick = () => {
+    setSearchOpen(true);
+  };
+
+  const handleSearchClose = () => {
+    setSearchOpen(false);
+  };
   const handleTabClick = (tab: React.SetStateAction<string>) => {
     setActiveTab(tab);
     setShowCategories(tab !== "menu" && tab !== "user");
@@ -34,39 +44,39 @@ const Header = () => {
   const categoryMenu = (
     <Menu>
       <Menu.Item>
-        <Link href="/" passHref>
-          <span className="flex w-full justify-between hover:text-2xl">
+        <Link href={routerNames.DOG} passHref>
+          <span className="flex w-full justify-between">
             <i className="fi fi-ss-dog" />
             <span className="ml-2">Dog</span>
           </span>
         </Link>
       </Menu.Item>
       <Menu.Item>
-        <Link href="#" passHref>
-          <span className="flex justify-between hover:text-2xl">
+        <Link href={routerNames.CAT} passHref>
+          <span className="flex justify-between">
             <i className="fi fi-sr-cat" />
             <span className="ml-2">Cat</span>
           </span>
         </Link>
       </Menu.Item>
       <Menu.Item>
-        <Link href="#" passHref>
-          <span className="flex justify-between hover:text-2xl">
+        <Link href={routerNames.FISH} passHref>
+          <span className="flex justify-between">
             <i className="fi fi-sr-dolphin" />
             <span className="ml-2">Fish</span>
           </span>
         </Link>
       </Menu.Item>
       <Menu.Item>
-        <Link href="#" passHref>
-          <span className="flex justify-between hover:text-2xl">
+        <Link href={routerNames.RABBIT} passHref>
+          <span className="flex justify-between">
             <i className="fi fi-sr-rabbit" />
             <span className="ml-2">Rabbit</span>
           </span>
         </Link>
       </Menu.Item>
       <Menu.Item>
-        <Link href="#" passHref>
+        <Link href={routerNames.TURTLE} passHref>
           <span className="flex justify-between hover:text-2xl">
             <i className="fi fi-sr-turtle" />
             <span className="ml-2">Turtle</span>
@@ -97,7 +107,7 @@ const Header = () => {
   return (
     <header className="relative bg-blue-900 text-white">
       {showPromo && (
-        <div className="relative flex items-center justify-center bg-blue-800 py-2 text-sm text-yellow-400">
+        <div className="relative flex items-center justify-center bg-blue-900 py-2 text-sm text-yellow-400">
           <p>
             Save <strong>up to 20%</strong> on all Toys & Accessories with
             &quot;
@@ -116,7 +126,7 @@ const Header = () => {
       <div className="mx-auto flex items-center justify-between p-4">
         <Link href={routerNames.HOME}>
           <div className="flex items-center space-x-4">
-            <div className="flex items-center space-x-1 text-2xl font-bold">
+            <div className="flex items-center space-x-2 text-2xl font-bold">
               <Image
                 src={Logo}
                 alt="logo"
@@ -128,17 +138,50 @@ const Header = () => {
             </div>
           </div>
         </Link>
-        <div className="lg:hidden">
-          <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="text-2xl text-white"
-            type="button"
-            aria-label="Toggle Menu"
-          >
-            &#9776;
-          </button>
+        <div className="lg:hidden flex items-center justify-between">
+          <div className="flex items-center relative space-x-4">
+            <button
+              onClick={handleSearchClick}
+              className="text-2xl text-white"
+              type="button"
+              aria-label="Search"
+            >
+              <SearchOutlined />
+            </button>
+            <Modal
+              title="Search"
+              open={isSearchOpen}
+              onCancel={handleSearchClose}
+              footer={null}
+            >
+              <Input
+                placeholder="Type to search..."
+                className="w-[50%]"
+                allowClear
+              />
+            </Modal>
+            <button
+              className="relative text-xl text-white"
+              onClick={addToCart}
+              aria-label="Shopping Cart"
+            >
+              <ShoppingCartOutlined />
+              {cartItems > 0 && (
+                <span className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-yellow-500 text-xs font-bold text-black">
+                  {cartItems}
+                </span>
+              )}
+            </button>
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="text-2xl text-white"
+              type="button"
+              aria-label="Toggle Menu"
+            >
+              &#9776;
+            </button>
+          </div>
         </div>
-
         <div className="hidden flex-grow justify-center lg:flex">
           <div className="relative flex w-full max-w-lg">
             <select className="h-full rounded-l-md bg-white pl-4 pr-6 text-black">
@@ -239,12 +282,42 @@ const Header = () => {
             <h3 className="py-2 text-center text-lg font-bold">Shop By Pet</h3>
             <nav className="grid grid-cols-2 items-center gap-4 p-6">
               {[
-                { name: "Dog", iconClass: "fi fi-ss-dog", tab: "dog" },
-                { name: "Fish", iconClass: "fi fi-sr-dolphin", tab: "fish" },
-                { name: "Cat", iconClass: "fi fi-sr-cat", tab: "cat" },
-                { name: "Bird", iconClass: "fi fi-sr-bird", tab: "bird" },
-                { name: "Rabbit", iconClass: "fi fi-sr-rabbit", tab: "rabbit" },
-                { name: "Turtle", iconClass: "fi fi-sr-turtle", tab: "turtle" },
+                {
+                  name: "Dog",
+                  iconClass: "fi fi-ss-dog",
+                  tab: "dog",
+                  router: routerNames.DOG,
+                },
+                {
+                  name: "Fish",
+                  iconClass: "fi fi-sr-dolphin",
+                  tab: "fish",
+                  router: routerNames.FISH,
+                },
+                {
+                  name: "Cat",
+                  iconClass: "fi fi-sr-cat",
+                  tab: "cat",
+                  router: routerNames.CAT,
+                },
+                {
+                  name: "Rabbit",
+                  iconClass: "fi fi-sr-rabbit",
+                  tab: "rabbit",
+                  router: routerNames.RABBIT,
+                },
+                {
+                  name: "Turtle",
+                  iconClass: "fi fi-sr-turtle",
+                  tab: "turtle",
+                  router: routerNames.TURTLE,
+                },
+                {
+                  name: "Other",
+                  iconClass: "fi fi-sr-steak",
+                  tab: "other",
+                  router: routerNames.OTHER,
+                },
               ].map((item) => (
                 <a
                   href="#"
@@ -267,9 +340,9 @@ const Header = () => {
             <nav className="flex flex-col space-y-2">
               {activeTab === "user" ? (
                 [
-                  { name: "Profile", tab: "profile" },
-                  { name: "Orders", tab: "orders" },
-                  { name: "Logout", tab: "logout" },
+                  { name: "Profile", tab: "profile", icon: UserOutlined },
+                  { name: "Orders", tab: "orders", icon: ShoppingCartOutlined },
+                  { name: "Logout", tab: "logout", icon: LoginOutlined },
                 ].map((item) => (
                   <a
                     href="#"
@@ -279,26 +352,42 @@ const Header = () => {
                     }`}
                     onClick={() => handleTabClick(item.tab)}
                   >
+                    <item.icon className="text-xl font-semibold pr-4" />
                     <span className="text-lg font-semibold">{item.name}</span>
                   </a>
                 ))
               ) : activeTab === "menu" ? (
                 <>
                   {[
-                    { name: "Home", tab: "home", routerName: routerNames.HOME, icon: HomeOutlined },
-                    { name: "Shop", tab: "shop", routerName: routerNames.SHOP, icon: ShoppingCartOutlined },
-                    { name: "Blog", tab: "blog", routerName: routerNames.BLOG, icon: BookOutlined },
+                    {
+                      name: "Home",
+                      tab: "home",
+                      routerName: routerNames.HOME,
+                      icon: HomeOutlined,
+                    },
+                    {
+                      name: "Shop",
+                      tab: "shop",
+                      routerName: routerNames.SHOP,
+                      icon: ShoppingCartOutlined,
+                    },
+                    {
+                      name: "Blog",
+                      tab: "blog",
+                      routerName: routerNames.BLOG,
+                      icon: BookOutlined,
+                    },
                     {
                       name: "Contact",
                       tab: "contact",
                       routerName: routerNames.CONTACT,
-                      icon: PhoneOutlined
+                      icon: PhoneOutlined,
                     },
                     {
                       name: "About",
                       tab: "about",
                       routerName: routerNames.ABOUT,
-                      icon: UserOutlined
+                      icon: UserOutlined,
                     },
                   ].map((item) => (
                     <Link
@@ -309,7 +398,7 @@ const Header = () => {
                       }`}
                       onClick={() => handleTabClick(item.tab)}
                     >
-                      <item.icon className="text-lg font-semibold" />
+                      <item.icon className="text-xl font-semibold pr-4" />
                       <span className="text-lg font-semibold">{item.name}</span>
                     </Link>
                   ))}
@@ -320,17 +409,27 @@ const Header = () => {
         )}
       </div>
 
-      <nav className="hidden bg-blue-800 py-4 text-white lg:flex">
+      <nav className="hidden bg-blue-900 py-4 text-white lg:flex">
         <div className="mx-auto flex items-center justify-between px-4">
-          <div className="flex items-center space-x-16 text-lg">
+          <div className="flex items-center space-x-16 text-lg font-semibold">
             <Dropdown overlay={categoryMenu} trigger={["hover"]}>
               <Link href="#">&#9776; All categories</Link>
             </Dropdown>
-            <Link href={routerNames.HOME}>Home</Link>
-            <Link href={routerNames.SHOP}>Shop</Link>
-            <Link href={routerNames.BLOG}>Blog</Link>
-            <Link href={routerNames.CONTACT}>Contact</Link>
-            <Link href={routerNames.ABOUT}>About</Link>
+            <Link href={routerNames.HOME} className="hover:underline">
+              Home
+            </Link>
+            <Link href={routerNames.SHOP} className="hover:underline">
+              Shop
+            </Link>
+            <Link href={routerNames.BLOG} className="hover:underline">
+              Blog
+            </Link>
+            <Link href={routerNames.CONTACT} className="hover:underline">
+              Contact
+            </Link>
+            <Link href={routerNames.ABOUT} className="hover:underline">
+              About
+            </Link>
           </div>
           <div className="relative pl-10 flex items-center">
             <button className="group text-xl text-white" onClick={addToCart}>
@@ -340,7 +439,7 @@ const Header = () => {
               </span>
             </button>
           </div>
-          <span className="ml-4">Shopping Cart</span>
+          <span className="ml-2 text-lg font-medium">Shopping Cart</span>
         </div>
       </nav>
     </header>

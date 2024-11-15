@@ -24,17 +24,17 @@ import Logo from "../../../assets/images/logo.jpg";
 
 const Footer = () => {
   return (
-    <footer className="bg-blue-900 pb-5 pt-10 text-gray-300">
-      <div className="container px-2">
+    <footer className="bg-blue-900 pb-5 pt-10 text-gray-300 w-full">
+      <div className="container px-4">
         <div className="mb-10 flex flex-col items-start space-y-6 lg:flex-row lg:items-center lg:justify-between lg:space-y-0">
           <div className="flex items-center space-x-4">
-            <div className="flex items-center space-x-1 text-2xl font-bold">
+            <div className="flex items-center space-x-2 text-2xl font-bold">
               <Image
                 src={Logo}
                 alt="logo"
                 width={40}
                 height={40}
-                className="h-12 w-12"
+                className="h-14 w-14"
               />
               <span className="ml-4">Lan Huong</span>
             </div>
